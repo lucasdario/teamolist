@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import sys
 sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
+from backend.marketplaces import list_marketplaces
 
 
 app = Flask(__name__)
@@ -44,6 +45,14 @@ def gravar_dados():
     return render_template('index.html', titulo='Marketplace Olist')
 
 
-#app.debug = True
+@app.route('/marketplace', methods=['GET'])
+def marketplace_list():
+    marketplaces = list_marketplaces()
+    print(marketplaces)
+    
+    return render_template('list.html', title='Marketplaces', data=marketplaces)
+
+
+app.debug = True
 
 app.run()
