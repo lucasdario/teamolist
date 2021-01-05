@@ -1,15 +1,15 @@
 import datetime as datetime
 import sys
 sys.path.append('.')
+ROOT = 'backend/arquivos/'
 
 
 def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
-    root = 'backend/arquivos/'
     arquivo = ''
     if tipo == 0:
-        arquivo = open(f'{root}list_marketplace.txt', operador)
+        arquivo = open(f'{ROOT}list_marketplace.txt', operador)
     elif tipo == 1:
-        arquivo = open(f'{root}list_produto.txt', operador)
+        arquivo = open(f'{ROOT}list_produto.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')
         return True
@@ -20,9 +20,22 @@ def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
 
 
 def log(valor: str):
-    root = 'backend/arquivos/'
-    arquivo = open(f'{root}log.txt', 'a')
+    arquivo = open(f'{ROOT}log.txt', 'a')
     data = datetime.datetime.now()
     arquivo.write(data.strftime(
         f"%d/%m/%Y às %H:%M:%S => Acesso a função {valor}\n"))
     arquivo.close()
+
+
+def read_from_txt_file(file_name: str):
+    data_list = []
+    with open(f'{ROOT}{file_name}.txt') as file:
+        for line in file:
+            line = line.strip().strip('%').split('*')
+            data = {'name': line[0], 'description': line[1]}
+            if file_name == 'list_produto':
+                data['price'] = line[2]
+            data_list.append(data)
+    
+    return data_list
+            
