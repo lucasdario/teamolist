@@ -4,6 +4,7 @@ sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
 from backend.product import product_list
 from backend.marketplaces import list_marketplaces
+from backend.categories import list_categories
 
 
 app = Flask(__name__)
@@ -23,6 +24,8 @@ def view_cadastro():
         return render_template('cadastro.html', titulo='Marketplace', op=opcao)
     elif opcao == 'produto':
         return render_template('cadastro.html', titulo='Produto', op=opcao)
+    elif opcao == 'category':
+        return render_template('cadastro.html', titulo='Category', op=opcao)
     else:
         return render_template('index.html', titulo='Marketplace Olist')
 
@@ -32,17 +35,22 @@ def gravar_dados():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
+    ref = request.args.get('ref')
     desc = str(desc).replace('*', '-').replace('%', '-')
     nome = str(nome).replace('*', '-').replace('%', '-')
     
-    if preco is None:
+    if ref == 'marketplace':
         dado = f'{nome}*{desc}'
         escrever_arquivo(dado, 0, 'a')
         log('gravar_marketplace')
-    else:
+    elif ref == 'product':
         dado = f'{nome}*{desc}*{preco}'
         escrever_arquivo(dado, 1, 'a')
         log('gravar_produto')
+    elif ref == 'category':
+        dado = f'{nome}*{desc}'
+        escrever_arquivo(dado, 2, 'a')
+        log('gravar_categoria')
     return render_template('index.html', titulo='Marketplace Olist')
 
 @app.route('/product-list', methods=['GET'])
@@ -58,6 +66,10 @@ def marketplace_list():
     
     return render_template('list.html', title='Marketplaces', data=marketplaces)
 
+@app.route('/category', methods=['GET'])
+def category_list():
+    categories = list_categories()
+    return render_template('list.html', title='Categories', data=categories)
 
 app.debug = True
 
