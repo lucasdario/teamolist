@@ -3,6 +3,7 @@ import sys
 sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
 from backend.product import product_list
+from backend.marketplaces import list_marketplaces
 
 
 app = Flask(__name__)
@@ -50,6 +51,14 @@ def product_listing():
     return render_template('list.html', title = 'Products', data = products_list)
 
 
-#app.debug = True
+@app.route('/marketplace', methods=['GET'])
+def marketplace_list():
+    marketplaces = list_marketplaces()
+    print(marketplaces)
+    
+    return render_template('list.html', title='Marketplaces', data=marketplaces)
+
+
+app.debug = True
 
 app.run()
