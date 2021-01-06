@@ -10,6 +10,8 @@ def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
     elif tipo == 1:
         arquivo = open(f'{ROOT}list_produto.txt', operador)
+    elif tipo == 2:
+        arquivo = open(f'{ROOT}list_category.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')
         return True
