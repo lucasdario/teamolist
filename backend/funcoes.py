@@ -6,10 +6,14 @@ ROOT = 'backend/arquivos/'
 
 def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
     arquivo = ''
-    if tipo == 0:
+    if tipo == 'marketplace':
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
-    elif tipo == 1:
-        arquivo = open(f'{ROOT}list_produto.txt', operador)
+    elif tipo == 'product':
+        arquivo = open(f'{ROOT}list_product.txt', operador)
+    elif tipo == 'seller':
+        arquivo = open(f'{ROOT}list_seller.txt', operador)
+    elif tipo == 'category':
+        arquivo = open(f'{ROOT}list_categoria.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')
         return True

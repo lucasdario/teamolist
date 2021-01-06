@@ -23,6 +23,10 @@ def view_cadastro():
         return render_template('cadastro.html', titulo='Marketplace', op=opcao)
     elif opcao == 'produto':
         return render_template('cadastro.html', titulo='Produto', op=opcao)
+    elif opcao == 'seller':
+        return render_template('cadastro.html', titulo='Seller', op=opcao)
+    elif opcao == 'categoria':
+        return render_template('cadastro.html', titulo='Categoria', op=opcao)
     else:
         return render_template('index.html', titulo='Marketplace Olist')
 
