@@ -6,7 +6,7 @@
   </tr>
   {% for item in data %}
   <tr>
-    {% if item['type'] == 'Created' %}
+    {% if item['type'] == 'create' %}
     <td class='td-created'>{{ item['data'] }}</td>
     {% else %}
     <td class='td-listed'>{{ item['data'] }}</td>
