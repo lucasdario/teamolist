@@ -10,6 +10,8 @@ def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
     elif tipo == 'product':
         arquivo = open(f'{ROOT}list_product.txt', operador)
+    elif tipo == 'seller':
+        arquivo = open(f'{ROOT}list_seller.txt', operador)
     elif tipo == 'category':
         arquivo = open(f'{ROOT}list_category.txt', operador)
     try:
@@ -38,5 +40,17 @@ def read_from_txt_file(file_name: str):
             if file_name == 'list_product':
                 data['price'] = line[2]
             data_list.append(data)
+    file.close()
+    log('read_from_txt_file')
+    return data_list
 
+def read_seller_file():
+    data_list = []
+    file = open(f'{ROOT}list_seller.txt')
+    for line in file:
+        line = line.strip().strip('%').split('*')
+        data = {'name': line[0], 'email': line[1], 'telefone': line[2]}
+        data_list.append(data)
+    file.close()
+    log('read_seller_file')
     return data_list

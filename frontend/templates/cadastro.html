@@ -10,6 +10,8 @@
     {%if op == 'produto' %}
     <label>Preço</label> <input type="number" name="preco" step="0.01">
     <input type="hidden" name="ref" value="product">
+    {% if op == 'marketplace' %}
+    <input type="hidden" name="ref" value="marketplace">
     {%endif%}
     </br></br></br>
     <button class="btn_gravar" type="submit">Salvar</button>

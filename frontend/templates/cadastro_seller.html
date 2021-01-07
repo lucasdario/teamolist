@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block body%}
+<h2>{{titulo}}</h2>
+<form action="/seller" method="POST">
+    <label>Nome</label> <input type="text" name="nome">
+    </br>
+    <label>Telefone</label> <input type="tel" name="telefone">
+    </br>
+    <label>E-mail</label> <input type="email" name="email">
+    </br></br>
+    <button class="btn_gravar" type="submit">Salvar</button>
+    <a class="btn_gravar" href="/">Voltar</a>
+</form>
+{%endblock%}

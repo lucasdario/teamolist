@@ -5,6 +5,7 @@ sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
 from backend.product import list_product
 from backend.marketplaces import list_marketplaces
+from backend.seller import create_seller, seller_list
 from backend.categories import create_category, list_categories
 
 
@@ -25,6 +26,8 @@ def view_cadastro():
         return render_template('cadastro.html', titulo='Marketplace', op=opcao)
     elif opcao == 'produto':
         return render_template('cadastro.html', titulo='Produto', op=opcao)
+    elif opcao == 'seller':
+        return render_template('cadastro_seller.html', titulo='Seller', op=opcao)
     elif opcao == 'category':
         return render_template('form_category.html', titulo='Category')
     else:
@@ -63,6 +66,16 @@ def marketplace_list():
     
     return render_template('list.html', title='Marketplaces', data=marketplaces)
 
+@app.route('/seller', methods=['POST'])
+def seller_registration():
+    seller = request.form
+    create_seller(seller)
+    return redirect('/seller')
+
+@app.route('/seller', methods=['GET'])
+def seller_listing():
+    sellers = seller_list()
+    return render_template('listing_seller.html', title='Sellers', data=sellers)
 
 @app.route('/category', methods=['GET'])
 def category_list():
