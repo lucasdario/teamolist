@@ -3,6 +3,7 @@ from backend.funcoes import escrever_arquivo, log, read_from_txt_file
 
 def list_categories() -> list:
     categories = read_from_txt_file('list_category', ['name', 'description'])
+    log('Listed Categories')
     return categories
 
 
@@ -11,4 +12,4 @@ def create_category(form_data: dict):
     description = form_data['descricao']
     data_str = f'{name}*{description}'
     escrever_arquivo(data_str, 'category', 'a')
-    log('gravar_categoria')
+    log('Created Category')
