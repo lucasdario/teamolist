@@ -35,7 +35,7 @@ def read_from_txt_file(file_name: str):
         for line in file:
             line = line.strip().strip('%').split('*')
             data = {'name': line[0], 'description': line[1]}
-            if file_name == 'list_produto':
+            if file_name == 'list_product':
                 data['price'] = line[2]
             data_list.append(data)
 
