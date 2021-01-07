@@ -38,6 +38,5 @@ def read_from_txt_file(file_name: str):
             if file_name == 'list_produto':
                 data['price'] = line[2]
             data_list.append(data)
-    
+
     return data_list
-            
