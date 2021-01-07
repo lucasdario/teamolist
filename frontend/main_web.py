@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import sys
 sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
-from backend.product import product_list
+from backend.product import list_product
 from backend.marketplaces import list_marketplaces
 
 
@@ -45,9 +45,9 @@ def gravar_dados():
         log('gravar_produto')
     return render_template('index.html', titulo='Marketplace Olist')
 
-@app.route('/product-list', methods=['GET'])
-def product_listing():
-    products_list = product_list()
+@app.route('/product', methods=['GET'])
+def product_list():
+    products_list = list_product()
     return render_template('list.html', title = 'Products', data = products_list)
 
 

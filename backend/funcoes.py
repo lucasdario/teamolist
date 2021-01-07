@@ -9,7 +9,7 @@ def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
     if tipo == 0:
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
     elif tipo == 1:
-        arquivo = open(f'{ROOT}list_produto.txt', operador)
+        arquivo = open(f'{ROOT}list_product.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')
         return True
@@ -33,7 +33,7 @@ def read_from_txt_file(file_name: str):
         for line in file:
             line = line.strip().strip('%').split('*')
             data = {'name': line[0], 'description': line[1]}
-            if file_name == 'list_produto':
+            if file_name == 'list_product':
                 data['price'] = line[2]
             data_list.append(data)
     
