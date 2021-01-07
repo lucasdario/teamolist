@@ -5,13 +5,15 @@
     <th>Log</th>
   </tr>
   {% for item in data %}
-  <tr>
-    {% if item['type'] == 'create' %}
-    <td class='td-created'>{{ item['data'] }}</td>
-    {% else %}
-    <td class='td-listed'>{{ item['data'] }}</td>
-    {% endif %}
+  {% if item['type'] == 'create' %}
+  <tr class='tr-created'>
+    <td>{{ item['data'] }}</td>
   </tr>
+  {% else %}
+  <tr class='tr-listed'>
+    <td>{{ item['data'] }}</td>
+  </tr>
+  {% endif %}
   {% endfor %}
 </table>
 <br />
