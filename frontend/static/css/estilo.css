@@ -121,10 +121,10 @@ tr td {
     color: #282828;
 }
 
-td .td-created {
-    background-color: #84cbf9;
+tr.tr-created {
+    background-color: rgba(173, 216, 249, 0.2);
 }
 
-td .td-listed {
+tr.tr-listed {
     background-color: rgb(255, 255, 255);
 }

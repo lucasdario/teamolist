@@ -40,5 +40,4 @@ def read_from_txt_file(file_name: str, fields: list):
             for i, field in enumerate(fields):
                 data[field] = line[i]
             data_list.append(data)
-    log('read_from_txt_file')
     return data_list
