@@ -4,13 +4,13 @@ sys.path.append('.')
 ROOT = 'backend/arquivos/'
 
 
-def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
+def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
     arquivo = ''
-    if tipo == 0:
+    if tipo == 'marketplace':
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
-    elif tipo == 1:
+    elif tipo == 'product':
         arquivo = open(f'{ROOT}list_produto.txt', operador)
-    elif tipo == 2:
+    elif tipo == 'category':
         arquivo = open(f'{ROOT}list_category.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')

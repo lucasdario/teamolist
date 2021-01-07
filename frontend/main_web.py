@@ -41,15 +41,15 @@ def gravar_dados():
     
     if ref == 'marketplace':
         dado = f'{nome}*{desc}'
-        escrever_arquivo(dado, 0, 'a')
+        escrever_arquivo(dado, ref, 'a')
         log('gravar_marketplace')
     elif ref == 'product':
         dado = f'{nome}*{desc}*{preco}'
-        escrever_arquivo(dado, 1, 'a')
+        escrever_arquivo(dado, ref, 'a')
         log('gravar_produto')
     elif ref == 'category':
         dado = f'{nome}*{desc}'
-        escrever_arquivo(dado, 2, 'a')
+        escrever_arquivo(dado, ref, 'a')
         log('gravar_categoria')
     return render_template('index.html', titulo='Marketplace Olist')
 
