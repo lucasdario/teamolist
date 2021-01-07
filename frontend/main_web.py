@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
+
 from backend.funcoes import escrever_arquivo, log
 from backend.product import product_list
 from backend.marketplaces import list_marketplaces
-from backend.categories import list_categories
+from backend.categories import create_category, list_categories
 
 
 app = Flask(__name__)
@@ -63,10 +64,18 @@ def marketplace_list():
     
     return render_template('list.html', title='Marketplaces', data=marketplaces)
 
+
 @app.route('/category', methods=['GET'])
 def category_list():
     categories = list_categories()
     return render_template('list.html', title='Categories', data=categories)
+
+
+@app.route('/category', methods=['POST'])
+def category_create():
+    category_data = request.form
+    create_category(category_data)
+    return redirect('/category')
 
 app.debug = True
 
