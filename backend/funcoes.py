@@ -40,6 +40,16 @@ def read_from_txt_file(file_name: str):
             if file_name == 'list_produto':
                 data['price'] = line[2]
             data_list.append(data)
-    
+    file.close()
+    return data_list
+
+def read_seller_file():
+    data_list = []
+    file = open(f'{ROOT}list_seller.txt')
+    for line in file:
+        line = line.strip().strip('%').split('*')
+        data = {'name': line[0], 'email': line[1], 'telefone': line[2]}
+        data_list.append(data)
+    file.close()
     return data_list
             
