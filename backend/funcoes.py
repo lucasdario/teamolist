@@ -9,7 +9,7 @@ def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
     if tipo == 'marketplace':
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
     elif tipo == 'product':
-        arquivo = open(f'{ROOT}list_produto.txt', operador)
+        arquivo = open(f'{ROOT}list_product.txt', operador)
     elif tipo == 'category':
         arquivo = open(f'{ROOT}list_category.txt', operador)
     try:
