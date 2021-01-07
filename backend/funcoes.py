@@ -4,7 +4,7 @@ sys.path.append('.')
 ROOT = 'backend/arquivos/'
 
 
-def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
+def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
     arquivo = ''
     if tipo == 'marketplace':
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)

@@ -70,10 +70,10 @@ def seller_registration():
         create_seller(seller)
     return render_template('cadastro_seller.html', titulo='Marketplace Olist')
 
-@app.route('/seller-list', methods=['GET'])
+@app.route('/sellerlist', methods=['GET'])
 def seller_listing():
-    seller_list = seller_list()
-    return render_template('list.html', title = 'Sellers', data = seller_list)
+    sellers = seller_list()
+    return render_template('list.html', title = 'Sellers', data = sellers)
 
 
 app.debug = True
