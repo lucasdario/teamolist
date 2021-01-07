@@ -4,6 +4,7 @@ sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
 from backend.product import product_list
 from backend.marketplaces import list_marketplaces
+from backend.seller import create_seller, seller_list
 
 
 app = Flask(__name__)
@@ -61,6 +62,18 @@ def marketplace_list():
     print(marketplaces)
     
     return render_template('list.html', title='Marketplaces', data=marketplaces)
+
+@app.route('/gravar-seller', methods=['GET', 'POST'])
+def seller_registration():
+    if request.method == 'POST':
+        seller = request.form
+        create_seller(seller)
+    return render_template('cadastro_seller.html', titulo='Marketplace Olist')
+
+@app.route('/seller-list', methods=['GET'])
+def seller_listing():
+    seller_list = seller_list()
+    return render_template('list.html', title = 'Sellers', data = seller_list)
 
 
 app.debug = True
