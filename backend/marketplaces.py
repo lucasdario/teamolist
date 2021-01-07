@@ -1,6 +1,7 @@
-from backend.funcoes import read_from_txt_file
+from backend.funcoes import log, read_from_txt_file
 
 
 def list_marketplaces() -> list:
     marketplaces = read_from_txt_file('list_marketplace')
+    log('Listed Marketplaces')
     return marketplaces

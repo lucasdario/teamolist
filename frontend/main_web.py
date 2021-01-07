@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
 
-from backend.funcoes import escrever_arquivo, log
+from backend.funcoes import escrever_arquivo, log, read_log
 from backend.product import list_product
 from backend.marketplaces import list_marketplaces
 from backend.seller import create_seller, seller_list
@@ -46,11 +46,11 @@ def gravar_dados():
     if ref == 'marketplace':
         dado = f'{nome}*{desc}'
         escrever_arquivo(dado, ref, 'a')
-        log('gravar_marketplace')
+        log('Created Marketplace')
     elif ref == 'product':
         dado = f'{nome}*{desc}*{preco}'
         escrever_arquivo(dado, ref, 'a')
-        log('gravar_produto')
+        log('Created Product')
     return render_template('index.html', titulo='Marketplace Olist')
 
 @app.route('/product', methods=['GET'])
@@ -62,8 +62,6 @@ def product_list():
 @app.route('/marketplace', methods=['GET'])
 def marketplace_list():
     marketplaces = list_marketplaces()
-    print(marketplaces)
-    
     return render_template('list.html', title='Marketplaces', data=marketplaces)
 
 @app.route('/seller', methods=['POST'])
@@ -88,6 +86,13 @@ def category_create():
     category_data = request.form
     create_category(category_data)
     return redirect('/category')
+
+
+@app.route('/logs', methods=['GET'])
+def logs_read():
+    logs_data = read_log()
+    return render_template('logs.html', data=logs_data)
+
 
 app.debug = True
 
