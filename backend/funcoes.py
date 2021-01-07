@@ -31,7 +31,7 @@ def log(valor: str):
     arquivo.close()
     
 
-def read_log():
+def read_log() -> list:
     log_list = []
     with open(f'{ROOT}log.txt', 'r') as file:
         for line in file:
@@ -41,6 +41,7 @@ def read_log():
             elif 'Created' in line:
                 line = {'data': line, 'type': 'create'}
             log_list.append(line)
+    return log_list
 
 
 def read_from_txt_file(file_name: str, fields: list):
