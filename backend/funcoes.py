@@ -43,26 +43,15 @@ def read_log():
             log_list.append(line)
 
 
-def read_from_txt_file(file_name: str):
+def read_from_txt_file(file_name: str, fields: list):
     data_list = []
     with open(f'{ROOT}{file_name}.txt') as file:
         for line in file:
             line = line.strip().strip('%').split('*')
-            data = {'name': line[0], 'description': line[1]}
-            if file_name == 'list_product':
-                data['price'] = line[2]
+            data = dict()
+            for i, field in enumerate(fields):
+                data[field] = line[i]
             data_list.append(data)
     file.close()
     log('read_from_txt_file')
-    return data_list
-
-def read_seller_file():
-    data_list = []
-    file = open(f'{ROOT}list_seller.txt')
-    for line in file:
-        line = line.strip().strip('%').split('*')
-        data = {'name': line[0], 'email': line[1], 'telefone': line[2]}
-        data_list.append(data)
-    file.close()
-    log('read_seller_file')
     return data_list
