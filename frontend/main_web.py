@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
 from backend.funcoes import escrever_arquivo, log
@@ -25,7 +25,7 @@ def view_cadastro():
     elif opcao == 'produto':
         return render_template('cadastro.html', titulo='Produto', op=opcao)
     elif opcao == 'seller':
-        return render_template('cadastro.html', titulo='Seller', op=opcao)
+        return render_template('cadastro_seller.html', titulo='Seller', op=opcao)
     elif opcao == 'categoria':
         return render_template('cadastro.html', titulo='Categoria', op=opcao)
     else:
@@ -42,11 +42,11 @@ def gravar_dados():
     
     if preco is None:
         dado = f'{nome}*{desc}'
-        escrever_arquivo(dado, 0, 'a')
+        escrever_arquivo(dado, 'marketplace', 'a')
         log('gravar_marketplace')
     else:
         dado = f'{nome}*{desc}*{preco}'
-        escrever_arquivo(dado, 1, 'a')
+        escrever_arquivo(dado, 'product', 'a')
         log('gravar_produto')
     return render_template('index.html', titulo='Marketplace Olist')
 
@@ -63,18 +63,16 @@ def marketplace_list():
     
     return render_template('list.html', title='Marketplaces', data=marketplaces)
 
-@app.route('/gravar-seller', methods=['GET', 'POST'])
+@app.route('/seller', methods=['POST'])
 def seller_registration():
-    if request.method == 'POST':
-        seller = request.form
-        create_seller(seller)
-    return render_template('cadastro_seller.html', titulo='Marketplace Olist')
+    seller = request.form
+    create_seller(seller)
+    return redirect('/seller')
 
-@app.route('/sellerlist', methods=['GET'])
+@app.route('/seller', methods=['GET'])
 def seller_listing():
     sellers = seller_list()
-    return render_template('list.html', title = 'Sellers', data = sellers)
-
+    return render_template('listing_seller.html', title = 'Sellers', data = sellers)
 
 app.debug = True
 

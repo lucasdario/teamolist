@@ -1,16 +1,18 @@
 {%extends 'base.html'%}
 
 {%block body%}
-<div class="div_container">
-    <h2>Cadastrar</h2>
-    <button class="btn_primary" name="opcao" value="marketplace" type="submit">Marketplace</button>
-    <br/><br/>
-    <button class="btn_primary" name="opcao" value="produto">Produto</button>
-    <br /><br />
-    <button class="btn_primary" name="seller" onclick="location.href='/gravar-seller'">Seller</button>
-    <h2>Listar</h2>
-    <button class="btn_primary" formaction="/marketplace" value="marketplace" type="submit">Marketplace</button>
-    <br /><br />
-    <button class="btn_primary" onclick="location.href='/sellerlist'" value="seller" type="submit">Seller</button>
-</div>
+<form action='/cadastro'>
+    <div class="div_container">
+        <h2>Cadastrar</h2>
+        <button class="btn_primary" name="opcao" value="marketplace" type="submit">Marketplace</button>
+        <br/><br/>
+        <button class="btn_primary" name="opcao" value="produto" type="submit">Produto</button>
+        <br /><br />
+        <button class="btn_primary" name="opcao" value="seller" type="submit">Seller</button>
+        <h2>Listar</h2>
+        <button class="btn_primary" formaction="/marketplace">Marketplace</button>
+        <br /><br />
+        <button class="btn_primary" onclick="location.href='/sellerlist'">Seller</button>
+    </div>
+</form>
 {%endblock%}
