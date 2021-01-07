@@ -1,4 +1,4 @@
-from backend.funcoes import escrever_arquivo, log, read_seller_file
+from backend.funcoes import escrever_arquivo, log, read_from_txt_file
 
 
 def create_seller(seller):
