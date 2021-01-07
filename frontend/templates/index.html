@@ -9,10 +9,18 @@
         <button class="btn_primary" name="opcao" value="produto" type="submit">Produto</button>
         <br /><br />
         <button class="btn_primary" name="opcao" value="seller" type="submit">Seller</button>
+        <br/><br/>
+        <button class="btn_primary" name="opcao" value="category" type="submit">Categoria</button>
         <h2>Listar</h2>
         <button class="btn_primary" formaction="/marketplace">Marketplace</button>
         <br /><br />
-        <button class="btn_primary" onclick="location.href='/sellerlist'">Seller</button>
+        <button class="btn_primary" formaction="/marketplace" value="marketplace" type="submit">Marketplace</button>
+        <br/><br/>
+        <button class="btn_primary" formaction="/product" value="product" type="submit">Produto</button>
+        <br/><br/>
+        <button class="btn_primary" formaction="/category" value="categories" type="submit">Categorias</button>
+        <br/><br/>
+        <button class="btn_primary" formaction="/seller" value="seller" type="submit">Seller</button>
     </div>
 </form>
 {%endblock%}

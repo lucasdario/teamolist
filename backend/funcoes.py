@@ -13,7 +13,7 @@ def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
     elif tipo == 'seller':
         arquivo = open(f'{ROOT}list_seller.txt', operador)
     elif tipo == 'category':
-        arquivo = open(f'{ROOT}list_categoria.txt', operador)
+        arquivo = open(f'{ROOT}list_category.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')
         return True
@@ -37,7 +37,7 @@ def read_from_txt_file(file_name: str):
         for line in file:
             line = line.strip().strip('%').split('*')
             data = {'name': line[0], 'description': line[1]}
-            if file_name == 'list_produto':
+            if file_name == 'list_product':
                 data['price'] = line[2]
             data_list.append(data)
     file.close()
@@ -54,4 +54,3 @@ def read_seller_file():
     file.close()
     log('read_seller_file')
     return data_list
-            
