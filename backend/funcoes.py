@@ -4,12 +4,14 @@ sys.path.append('.')
 ROOT = 'backend/arquivos/'
 
 
-def escrever_arquivo(valor: str, tipo: int, operador: str) -> bool:
+def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
     arquivo = ''
-    if tipo == 0:
+    if tipo == 'marketplace':
         arquivo = open(f'{ROOT}list_marketplace.txt', operador)
-    elif tipo == 1:
+    elif tipo == 'product':
         arquivo = open(f'{ROOT}list_product.txt', operador)
+    elif tipo == 'category':
+        arquivo = open(f'{ROOT}list_category.txt', operador)
     try:
         arquivo.write(str(valor)+'%\n')
         return True
@@ -36,6 +38,5 @@ def read_from_txt_file(file_name: str):
             if file_name == 'list_product':
                 data['price'] = line[2]
             data_list.append(data)
-    
+
     return data_list
-            

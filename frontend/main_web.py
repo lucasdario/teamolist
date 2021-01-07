@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
+
 from backend.funcoes import escrever_arquivo, log
 from backend.product import list_product
 from backend.marketplaces import list_marketplaces
+from backend.categories import create_category, list_categories
 
 
 app = Flask(__name__)
@@ -23,6 +25,8 @@ def view_cadastro():
         return render_template('cadastro.html', titulo='Marketplace', op=opcao)
     elif opcao == 'produto':
         return render_template('cadastro.html', titulo='Produto', op=opcao)
+    elif opcao == 'category':
+        return render_template('form_category.html', titulo='Category')
     else:
         return render_template('index.html', titulo='Marketplace Olist')
 
@@ -32,16 +36,17 @@ def gravar_dados():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
+    ref = request.args.get('ref')
     desc = str(desc).replace('*', '-').replace('%', '-')
     nome = str(nome).replace('*', '-').replace('%', '-')
     
-    if preco is None:
+    if ref == 'marketplace':
         dado = f'{nome}*{desc}'
-        escrever_arquivo(dado, 0, 'a')
+        escrever_arquivo(dado, ref, 'a')
         log('gravar_marketplace')
-    else:
+    elif ref == 'product':
         dado = f'{nome}*{desc}*{preco}'
-        escrever_arquivo(dado, 1, 'a')
+        escrever_arquivo(dado, ref, 'a')
         log('gravar_produto')
     return render_template('index.html', titulo='Marketplace Olist')
 
@@ -58,6 +63,18 @@ def marketplace_list():
     
     return render_template('list.html', title='Marketplaces', data=marketplaces)
 
+
+@app.route('/category', methods=['GET'])
+def category_list():
+    categories = list_categories()
+    return render_template('list.html', title='Categories', data=categories)
+
+
+@app.route('/category', methods=['POST'])
+def category_create():
+    category_data = request.form
+    create_category(category_data)
+    return redirect('/category')
 
 app.debug = True
 
