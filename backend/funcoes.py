@@ -41,6 +41,7 @@ def read_from_txt_file(file_name: str):
                 data['price'] = line[2]
             data_list.append(data)
     file.close()
+    log('read_from_txt_file')
     return data_list
 
 def read_seller_file():
@@ -51,5 +52,6 @@ def read_seller_file():
         data = {'name': line[0], 'email': line[1], 'telefone': line[2]}
         data_list.append(data)
     file.close()
+    log('read_seller_file')
     return data_list
             
