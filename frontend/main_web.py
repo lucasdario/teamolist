@@ -91,7 +91,7 @@ def category_create():
 @app.route('/logs', methods=['GET'])
 def logs_read():
     logs_data = read_log()
-    return render_template('logs.html', data=logs_data)
+    return render_template('logs.html', title='Logs', data=logs_data)
 
 
 app.debug = True
