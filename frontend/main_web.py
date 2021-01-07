@@ -47,11 +47,8 @@ def gravar_dados():
         dado = f'{nome}*{desc}*{preco}'
         escrever_arquivo(dado, ref, 'a')
         log('gravar_produto')
-    elif ref == 'category':
-        dado = f'{nome}*{desc}'
-        escrever_arquivo(dado, ref, 'a')
-        log('gravar_categoria')
     return render_template('index.html', titulo='Marketplace Olist')
+
 
 @app.route('/product-list', methods=['GET'])
 def product_listing():
