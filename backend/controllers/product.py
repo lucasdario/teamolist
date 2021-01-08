@@ -14,5 +14,3 @@ def list_products() -> list:
     products_list = read_from_txt_file('list_product', ['name', 'description', 'price'])
     create_log('Listed Products')
     return products_list
-
-
