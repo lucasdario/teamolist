@@ -23,27 +23,6 @@ def escrever_arquivo(valor: str, tipo: str, operador: str) -> bool:
         arquivo.close()
 
 
-def log(valor: str):
-    arquivo = open(f'{ROOT}log.txt', 'a')
-    data = datetime.datetime.now()
-    arquivo.write(data.strftime(
-        f"%d/%m/%Y às %H:%M:%S => {valor}\n"))
-    arquivo.close()
-    
-
-def read_log() -> list:
-    log_list = []
-    with open(f'{ROOT}log.txt', 'r') as file:
-        for line in file:
-            line = line.strip()
-            if 'Listed' in line:
-                line = {'data': line, 'type': 'list'}
-            elif 'Created' in line:
-                line = {'data': line, 'type': 'create'}
-            log_list.append(line)
-    return log_list
-
-
 def read_from_txt_file(file_name: str, fields: list):
     data_list = []
     with open(f'{ROOT}{file_name}.txt') as file:
