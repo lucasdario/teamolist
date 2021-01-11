@@ -1,4 +1,4 @@
-from backend.dao.txt.dao_log import read_logs, write_log
+from backend.dao.db.dao_log import read_logs, write_log
 
 
 def create_log(content: str):
