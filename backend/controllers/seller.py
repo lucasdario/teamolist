@@ -1,4 +1,4 @@
-from backend.dao.txt.dao_seller import read_sellers, write_seller
+from backend.dao.db.dao_seller import read_sellers, write_seller
 
 
 def create_seller(form_data: dict):
