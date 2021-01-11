@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, Blueprint
-from backend.seller import create_seller, seller_list
+from backend.controllers.seller import create_seller, list_sellers
 
 
 seller = Blueprint(__name__, 'seller')
@@ -19,5 +19,5 @@ def seller_create():
 
 @seller.route('/seller', methods=['GET'])
 def seller_list_():
-    sellers = seller_list()
+    sellers = list_sellers()
     return render_template('seller/list_seller.html', title='Sellers', data=sellers)

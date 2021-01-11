@@ -1,4 +1,4 @@
-from backend.marketplaces import list_marketplaces, create_marketplace
+from backend.controllers.marketplace import list_marketplaces, create_marketplace
 from flask import Blueprint, render_template, request, redirect
 
 
@@ -14,6 +14,7 @@ def marketplace_form():
 def marketplace_list():
     marketplaces = list_marketplaces()
     return render_template('marketplace/list_marketplace.html', title='Marketplaces', data=marketplaces)
+
 
 @marketplace.route('/marketplace', methods=['POST'])
 def marketplace_create():

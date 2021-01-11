@@ -1,5 +1,5 @@
 from flask import redirect, request, render_template, Blueprint
-from backend.categories import create_category, list_categories
+from backend.controllers.category import create_category, list_categories
 
 
 category = Blueprint(__name__, 'category')
