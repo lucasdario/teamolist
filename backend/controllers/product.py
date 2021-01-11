@@ -1,4 +1,4 @@
-from backend.dao.txt.dao_product import read_products, write_product
+from backend.dao.db.dao_product import read_products, write_product
 
 
 def create_product(form_data: dict):
