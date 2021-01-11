@@ -1,20 +1,19 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %}
+{% block body %}
 <h1>{{ title }}</h1>
 <table>
   <tr>
     <th>Log</th>
   </tr>
-  {% for item in data %}
-  {% if item['type'] == 'create' %}
-  <tr class='tr-created'>
+  {% for item in data %} {% if item['type'] == 'create' %}
+  <tr class="tr-created">
     <td>{{ item['data'] }}</td>
   </tr>
   {% else %}
-  <tr class='tr-listed'>
+  <tr class="tr-listed">
     <td>{{ item['data'] }}</td>
   </tr>
-  {% endif %}
-  {% endfor %}
+  {% endif %} {% endfor %}
 </table>
 <br />
 <a class="btn_gravar" href="/">Voltar</a>

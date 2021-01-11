@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>{{ title }}</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+  {% for item in data %}
+  <tr>
+    <td>{{ item['name'] }}</td>
+    <td>{{ item['description'] }}</td>
+    <td>{{ '%.2f'|format(item['price']) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br />
+<a class="btn_gravar" href="/">Voltar</a>
+{% endblock %}

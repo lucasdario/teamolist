@@ -1,20 +1,15 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %}
+{% block body %}
 <h1>{{ title }}</h1>
 <table>
   <tr>
     <th>Name</th>
     <th>Description</th>
-    {% if title == 'Products' %}
-    <th>Price</th>
-    {% endif %}
   </tr>
   {% for item in data %}
   <tr>
     <td>{{ item['name'] }}</td>
     <td>{{ item['description'] }}</td>
-    {% if item.get('price') %}
-    <td>{{ item['price'] }}</td>
-    {% endif %}
   </tr>
   {% endfor %}
 </table>
