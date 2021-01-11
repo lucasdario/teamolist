@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2> {{ titulo }} </h2>
+<form action="/category" method="POST">
+    <label>Nome</label> <input type="text" name="nome">
+    </br>
+    <label>Descrição</label> <input type="text" name="descricao">
+    </br></br>
+    <button class="btn_gravar" type="submit">Salvar</button>
+    <a class="btn_gravar" href="/">Voltar</a>
+</form>
+{% endblock %}

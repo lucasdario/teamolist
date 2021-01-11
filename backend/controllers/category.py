@@ -1,5 +1,4 @@
 from backend.dao.txt.dao_category import read_categories, write_category
-from backend.controllers.log import create_log
 
 
 def create_category(form_data: dict):

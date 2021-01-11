@@ -1,17 +1,13 @@
-{%extends 'base.html'%}
-
-{%block body%}
-<h2> {{titulo}} </h2>
-<form action="/category" method="POST">
+{% extends 'base.html' %}
+{% block body %}
+<h2> {{ titulo }} </h2>
+<form action="/marketplace" method="POST">
     <label>Nome</label> <input type="text" name="nome">
     </br>
     <label>Descrição</label> <input type="text" name="descricao">
     </br>
-    <input type="hidden" name="ref" value="category">
-    </br></br></br>
+    </br></br>
     <button class="btn_gravar" type="submit">Salvar</button>
     <a class="btn_gravar" href="/">Voltar</a>
 </form>
-
-
-{%endblock%}
+{% endblock %}

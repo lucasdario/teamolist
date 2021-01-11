@@ -1,16 +1,15 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %}
+{% block body %}
 <h1>{{ title }}</h1>
 <table>
   <tr>
     <th>Name</th>
-    <th>Telefone</th>
-    <th>E-mail</th>
+    <th>Description</th>
   </tr>
   {% for item in data %}
   <tr>
     <td>{{ item['name'] }}</td>
-    <td>{{ item['telefone'] }}</td>
-    <td>{{ item['email'] }}</td>
+    <td>{{ item['description'] }}</td>
   </tr>
   {% endfor %}
 </table>
