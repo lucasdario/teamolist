@@ -1,4 +1,4 @@
-from backend.dao.txt.dao_category import read_categories, write_category
+from backend.dao.db.dao_category import read_categories, write_category
 
 
 def create_category(form_data: dict):
