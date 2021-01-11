@@ -1,4 +1,4 @@
-from backend.dao.txt.dao_marketplace import read_marketplaces, write_marketplace
+from backend.dao.db.dao_marketplace import read_marketplaces, write_marketplace
 
 
 def create_marketplace(form_data: dict):
