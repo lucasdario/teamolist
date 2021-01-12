@@ -1,22 +1,17 @@
-from backend.controllers.log import create_log
 from backend.dao.db import cursor, conn
+from backend.models.product import Product
 
 
-def write_product(form_data):
-    name = form_data["nome"]
-    description = form_data["descricao"]
-    price = form_data["preco"]
-    cursor.execute(f"insert into products (name, description, price) values ('{name}', '{description}', '{price}');")
+def write_product(product: Product):
+    cursor.execute(f"insert into products (name, description, price) values ('{product.name}', '{product.description}', '{product.price}');")
     conn.commit()
-    create_log('Created Product')
 
 
 def read_products() -> list:
     cursor.execute(f'select * from products;')
     result = cursor.fetchall()
     products = []
-    for product in result:
-        products.append(
-            {'name': product[1], 'description': product[2], 'price': float(product[3].strip('$').replace(',', ''))})
-    create_log('Listed Products')
+    for item in result:
+        product = Product(item[1], item[2], float(item[3].strip('$').replace(',', '')), item[0])
+        products.append(product)
     return products
