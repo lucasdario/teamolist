@@ -1,11 +1,11 @@
 from datetime import datetime
-
 from backend.dao.db import conn, cursor
+from backend.models.log import Log
 
 
-def write_log(content: str):
+def write_log(log: Log):
     date = datetime.now()
-    content = date.strftime(f"%d/%m/%Y às %H:%M:%S => {content}")
+    content = date.strftime(f"%d/%m/%Y às %H:%M:%S => {log.data}")
     cursor.execute(f"insert into logs (data) values ('{content}');")
     conn.commit()
 
@@ -14,11 +14,12 @@ def read_logs() -> list:
     log_list = []
     cursor.execute("select * from logs;")
     result = cursor.fetchall()
-    for log in result:
-        if 'Listed' in log[1]:
-            data = {'data': log[1], 'type': 'list'}
+    for item in result:
+        log = Log(item[1], item[0])
+        if 'Listed' in item[1]:
+            data = {'data': log.data, 'type': 'list', 'id': log.id}
             log_list.append(data)
-        elif 'Created' in log[1]:
-            data = {'data': log[1], 'type': 'create'}
+        elif 'Created' in item[1]:
+            data = {'data': log.data, 'type': 'create', 'id': log.id}
             log_list.append(data)
     return log_list

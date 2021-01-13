@@ -1,5 +1,6 @@
 from flask import redirect, request, render_template, Blueprint
 from backend.controllers.category import create_category, list_categories
+from backend.models.category import Category
 
 
 category = Blueprint(__name__, 'category')
@@ -18,6 +19,6 @@ def category_list():
 
 @category.route('/category', methods=['POST'])
 def category_create():
-    category_data = request.form
-    create_category(category_data)
+    category = Category(request.form.get('nome'), request.form.get('descricao'))
+    create_category(category)
     return redirect('/category')

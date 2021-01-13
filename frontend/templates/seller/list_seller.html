@@ -3,15 +3,17 @@
 <h1>{{ title }}</h1>
 <table>
   <tr>
+    <th>ID</th>
     <th>Name</th>
     <th>Telephone</th>
     <th>E-mail</th>
   </tr>
   {% for item in data %}
   <tr>
-    <td>{{ item['name'] }}</td>
-    <td>{{ item['telefone'] }}</td>
-    <td>{{ item['email'] }}</td>
+    <td>{{ item.id }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.telefone }}</td>
+    <td>{{ item.email }}</td>
   </tr>
   {% endfor %}
 </table>

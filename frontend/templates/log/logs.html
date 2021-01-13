@@ -3,17 +3,22 @@
 <h1>{{ title }}</h1>
 <table>
   <tr>
+    <th>ID</th>
     <th>Log</th>
   </tr>
-  {% for item in data %} {% if item['type'] == 'create' %}
-  <tr class="tr-created">
-    <td>{{ item['data'] }}</td>
-  </tr>
-  {% else %}
-  <tr class="tr-listed">
-    <td>{{ item['data'] }}</td>
-  </tr>
-  {% endif %} {% endfor %}
+  {% for item in data %} 
+    {% if item['type'] == 'create' %}
+    <tr class="tr-created">
+      <td>{{ item['id'] }}</td>
+      <td>{{ item['data'] }}</td>
+    </tr>
+    {% else %}
+    <tr class="tr-listed">
+      <td>{{ item['id'] }}</td>
+      <td>{{ item['data'] }}</td>
+    </tr>
+    {% endif %} 
+  {% endfor %}
 </table>
 <br />
 <a class="btn_gravar" href="/">Voltar</a>

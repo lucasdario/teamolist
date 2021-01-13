@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, request, render_template
 from backend.controllers.product import list_products, create_product
-
+from backend.models.product import Product
 
 product = Blueprint(__name__, 'product')
 
@@ -18,6 +18,6 @@ def product_list():
 
 @product.route('/product', methods=['POST'])
 def product_create():
-    form_data = request.form
-    create_product(form_data)
+    product = Product(request.form.get('nome'), request.form.get('descricao'), request.form.get('preco'))
+    create_product(product)
     return redirect('/product')

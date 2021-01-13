@@ -3,13 +3,15 @@
 <h1>{{ title }}</h1>
 <table>
   <tr>
+    <th>ID</th>
     <th>Name</th>
     <th>Description</th>
   </tr>
   {% for item in data %}
   <tr>
-    <td>{{ item['name'] }}</td>
-    <td>{{ item['description'] }}</td>
+    <td>{{ item.id }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.description }}</td>
   </tr>
   {% endfor %}
 </table>
