@@ -12,8 +12,18 @@
       <td>{{ item['id'] }}</td>
       <td>{{ item['data'] }}</td>
     </tr>
-    {% else %}
+    {% elif item['type'] == 'list' %}
     <tr class="tr-listed">
+      <td>{{ item['id'] }}</td>
+      <td>{{ item['data'] }}</td>
+    </tr> 
+    {% elif item['type'] == 'delete' %}
+    <tr class="tr-deleted">
+      <td>{{ item['id'] }}</td>
+      <td>{{ item['data'] }}</td>
+    </tr>
+    {% elif item['type'] == 'update'%}
+    <tr class="tr-updated">
       <td>{{ item['id'] }}</td>
       <td>{{ item['data'] }}</td>
     </tr>
