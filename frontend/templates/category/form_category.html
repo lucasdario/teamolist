@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
+{% if update %}
 <h2> {{ titulo }} </h2>
+
+<form action="/category/update" method="POST">
+    <input type="hidden" name="id" value="{{id}}"/>
+    <label>Nome</label> <input type="text" name="nome" value="{{name}}">
+    </br>
+    <label>Descrição</label> <input type="text" name="descricao" value="{{description}}">
+    </br></br>
+    <button class="btn_gravar" type="submit">Salvar Edição</button>
+    <a class="btn_gravar" href="/">Voltar</a>
+</form>
+{% else %}
+<h2> {{ titulo }} </h2>
+
 <form action="/category" method="POST">
     <label>Nome</label> <input type="text" name="nome">
     </br>
@@ -9,4 +23,5 @@
     <button class="btn_gravar" type="submit">Salvar</button>
     <a class="btn_gravar" href="/">Voltar</a>
 </form>
+{% endif %}
 {% endblock %}
