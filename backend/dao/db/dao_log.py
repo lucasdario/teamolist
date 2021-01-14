@@ -19,16 +19,5 @@ def read_logs() -> list:
         result = cursor.fetchall()
         for item in result:
             log = Log(item[1], item[0])
-            if 'Listed' in item[1]:
-                data = {'data': log.data, 'type': 'list', 'id': log.id}
-                log_list.append(data)
-            elif 'Created' in item[1]:
-                data = {'data': log.data, 'type': 'create', 'id': log.id}
-                log_list.append(data)
-            elif 'Deleted' in item[1]:
-                data = {'data': log.data, 'type': 'delete', 'id': log.id}
-                log_list.append(data)
-            elif 'Updated' in item[1]:
-                data = {'data': log.data, 'type': 'update', 'id': log.id}
-                log_list.append(data)
+            log_list.append(log)
         return log_list

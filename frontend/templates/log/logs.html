@@ -7,22 +7,22 @@
     <th>Log</th>
   </tr>
   {% for item in data %} 
-    {% if item['type'] == 'create' %}
+    {% if "Created" in item.data %}
     <tr class="tr-created">
       <td>{{ item['id'] }}</td>
       <td>{{ item['data'] }}</td>
     </tr>
-    {% elif item['type'] == 'list' %}
+    {% elif "Listed" in item.data %}
     <tr class="tr-listed">
       <td>{{ item['id'] }}</td>
       <td>{{ item['data'] }}</td>
     </tr> 
-    {% elif item['type'] == 'delete' %}
+    {% elif "Deleted" in item.data %}
     <tr class="tr-deleted">
       <td>{{ item['id'] }}</td>
       <td>{{ item['data'] }}</td>
     </tr>
-    {% elif item['type'] == 'update'%}
+    {% elif "Updated" in item.data %}
     <tr class="tr-updated">
       <td>{{ item['id'] }}</td>
       <td>{{ item['data'] }}</td>
