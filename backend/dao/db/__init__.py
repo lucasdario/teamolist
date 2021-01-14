@@ -4,43 +4,57 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
-load_dotenv()
+class Connection:
+    def __get_connection_string(self):
+        load_dotenv()
 
-HOST = os.getenv('PG_HOST')
-USER = os.getenv('PG_USER')
-PASSWORD = os.getenv('PG_PASSWORD')
-DATABASE = os.getenv('PG_DATABASE')
+        host = os.getenv('PG_HOST')
+        user = os.getenv('PG_USER')
+        password = os.getenv('PG_PASSWORD')
+        dbname = os.getenv('PG_DATABASE')
 
-conn = psycopg2.connect(
-    f'host={HOST} dbname={DATABASE} user={USER} password={PASSWORD}')
-cursor = conn.cursor()
-
-
-def _is_table_created(table: str) -> bool:
-    cursor.execute(
-        f"select exists(select * from information_schema.tables where table_name='{table}')")
-    return cursor.fetchone()[0]
+        connection_string = f'host={host} user={user} password={password} dbname={dbname}'
+        return connection_string
 
 
-def _are_tables_created():
-    tables = ['logs', 'marketplaces', 'sellers', 'products', 'categories']
-    not_created = []
-    for table in tables:
-        if _is_table_created(table):
-            continue
-        not_created.append(table)
-    return not_created
+    def __enter__(self):
+        self.__connection = psycopg2.connect(self.__get_connection_string())
+        return self.__connection
 
 
-def _get_queries_from_json():
-    with open('queries.json') as file:
-        return json.loads(file.read())
+    def __exit__(self, type, value, trace):
+        self.__connection.close()
 
 
-def create_tables():
-    not_created = _are_tables_created()
-    if not_created:
-        queries = _get_queries_from_json()
-        for table in not_created:
-            cursor.execute(queries[table])
-            conn.commit()
+    def _is_table_created(self, table: str) -> bool:
+        with Connection() as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                f"select exists(select * from information_schema.tables where table_name='{table}')")
+            return cursor.fetchone()[0]
+
+
+    def _are_tables_created(self):
+        tables = ['logs', 'marketplaces', 'sellers', 'products', 'categories']
+        not_created = []
+        for table in tables:
+            if self._is_table_created(table):
+                continue
+            not_created.append(table)
+        return not_created
+
+
+    def _get_queries_from_json(self):
+        with open('queries.json') as file:
+            return json.loads(file.read())
+
+
+    def create_tables(self):
+        with Connection() as connection:
+            cursor = connection.cursor()
+            not_created = self._are_tables_created()
+            if not_created:
+                queries = self._get_queries_from_json()
+                for table in not_created:
+                    cursor.execute(queries[table])
+                    connection.commit()
