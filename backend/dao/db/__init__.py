@@ -51,9 +51,9 @@ class Connection:
 
     def create_tables(self):
         with Connection() as connection:
-            cursor = connection.cursor()
             not_created = self._are_tables_created()
             if not_created:
+                cursor = connection.cursor()
                 queries = self._get_queries_from_json()
                 for table in not_created:
                     cursor.execute(queries[table])
