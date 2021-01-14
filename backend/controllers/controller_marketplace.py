@@ -22,3 +22,9 @@ def edit_marketplace(id: int, name: str, description: str) -> None:
     update_marketplace(marketplace)
     log = Log('Updated Marketplace')
     create_log(log)
+
+
+def remove_marketplace(id: int) -> None:
+    delete_marketplace(id)
+    log = Log('Deleted Marketplace')
+    create_log(log)
