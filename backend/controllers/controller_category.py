@@ -26,5 +26,3 @@ def edit_category(id: int, name: str, description: str):
     update_category(category)
     log = Log('Updated Category')
     create_log(log)
-
-print(read_categories())
