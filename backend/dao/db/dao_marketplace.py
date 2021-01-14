@@ -1,10 +1,12 @@
-from backend.dao.db import conn, cursor
+from backend.dao.db import Connection
 from backend.models.marketplace import Marketplace
 
 
 def write_marketplace(marketplace: Marketplace):
-    cursor.execute(f"insert into marketplaces (name, description) values ('{marketplace.name}', '{marketplace.description}');")
-    conn.commit()
+    with Connection() as connection:
+        cursor = connection.cursor()
+        cursor.execute(f"insert into marketplaces (name, description) values ('{marketplace.name}', '{marketplace.description}');")
+        connection.commit()
 
 
 def read_marketplaces() -> list:
