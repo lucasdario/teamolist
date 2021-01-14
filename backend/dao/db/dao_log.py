@@ -22,4 +22,10 @@ def read_logs() -> list:
         elif 'Created' in item[1]:
             data = {'data': log.data, 'type': 'create', 'id': log.id}
             log_list.append(data)
+        elif 'Deleted' in item[1]:
+            data = {'data': log.data, 'type': 'delete', 'id': log.id}
+            log_list.append(data)
+        elif 'Updated' in item[1]:
+            data = {'data': log.data, 'type': 'update', 'id': log.id}
+            log_list.append(data)
     return log_list

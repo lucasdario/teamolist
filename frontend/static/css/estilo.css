@@ -90,6 +90,64 @@ label {
     text-decoration: none;
 }
 
+.btn_editar {
+    background: #34db74;
+    background-image: -webkit-linear-gradient(top, #34db74, #29b930);
+    background-image: -moz-linear-gradient(top, #34db74, #29b930);
+    background-image: -ms-linear-gradient(top, #34db74, #29b930);
+    background-image: -o-linear-gradient(top, #34db74, #29b930);
+    background-image: linear-gradient(to bottom, #34db74, #29b930);
+    -webkit-border-radius: 25;
+    -moz-border-radius: 25;
+    border-radius: 25px;
+    text-shadow: 1px 1px 3px #000000;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    align-content: center;
+}
+
+.btn_editar:hover {
+    background: #52f17a;
+    background-image: -webkit-linear-gradient(top, #52f17a, #26cf34);
+    background-image: -moz-linear-gradient(top, #52f17a, #26cf34);
+    background-image: -ms-linear-gradient(top, #52f17a, #26cf34);
+    background-image: -o-linear-gradient(top, #52f17a, #26cf34);
+    background-image: linear-gradient(to bottom, #52f17a, #26cf34);
+    text-decoration: none;
+}
+
+.btn_excluir {
+    background: #e94a4a;
+    background-image: -webkit-linear-gradient(top, #e94a4a, #b92929);
+    background-image: -moz-linear-gradient(top, #e94a4a, #b92929);
+    background-image: -ms-linear-gradient(top, #e94a4a, #b92929);
+    background-image: -o-linear-gradient(top, #e94a4a, #b92929);
+    background-image: linear-gradient(to bottom, #e94a4a, #b92929);
+    -webkit-border-radius: 25;
+    -moz-border-radius: 25;
+    border-radius: 25px;
+    text-shadow: 1px 1px 3px #000000;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    align-content: center;
+}
+
+.btn_excluir:hover {
+    background: #f05151;
+    background-image: -webkit-linear-gradient(top, #f05151, #c93b3b);
+    background-image: -moz-linear-gradient(top, #f05151, #c93b3b);
+    background-image: -ms-linear-gradient(top, #f05151, #c93b3b);
+    background-image: -o-linear-gradient(top, #f05151, #c93b3b);
+    background-image: linear-gradient(to bottom, #f05151, #c93b3b);
+    text-decoration: none;
+}
+
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -122,9 +180,17 @@ tr td {
 }
 
 tr.tr-created {
-    background-color: rgba(173, 216, 249, 0.2);
+    background-color: rgba(98, 254, 103, 0.2);
 }
 
 tr.tr-listed {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(173, 188, 237);
+}
+
+tr.tr-updated {
+    background-color: rgb(223, 235, 156);
+}
+
+tr.tr-deleted {
+    background-color: rgb(244, 175, 175);
 }

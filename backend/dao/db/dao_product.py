@@ -15,3 +15,17 @@ def read_products() -> list:
         product = Product(item[1], item[2], float(item[3].strip('$').replace(',', '')), item[0])
         products.append(product)
     return products
+
+
+def update_product(product: Product):
+    cursor.execute(f"""
+                    UPDATE products SET name='{product.name}',description='{product.description}',
+                    price='{product.price}'
+                    WHERE products.id='{product.id}'
+                    """)
+    conn.commit()
+
+
+def delete_product(id: int):
+    cursor.execute(f"DELETE FROM products WHERE products.id = '{id}'")
+    conn.commit()

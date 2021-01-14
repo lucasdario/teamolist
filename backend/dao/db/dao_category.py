@@ -15,3 +15,15 @@ def read_categories() -> list:
         category = Category(item[1], item[2], item[0])
         categories.append(category)
     return categories
+
+
+def update_category(category: Category):
+    cursor.execute(f"""
+                    UPDATE categories SET name='{category.name}',description='{category.description}'
+                    WHERE categories.id='{category.id}'
+                    """)
+    conn.commit()
+
+def delete_category(id: int):
+    cursor.execute(f"DELETE FROM categories WHERE categories.id = '{id}'")
+    conn.commit()
