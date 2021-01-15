@@ -16,7 +16,7 @@
     <td>{{ item.name }}</td>
     <td>{{ item.description }}</td>
     <td>R${{ '%.2f'|format(item.price) }}</td>
-    <td><a class="btn_editar" href="/product/update?id={{item.id}}&name={{item.name}}&description={{item.description}}&price={{item.price}}">Editar</a></td>
+    <td><a class="btn_editar" href="/product/update?id={{item.id}}">Editar</a></td>
     <td><a class="btn_excluir" href="/product/delete?id={{item.id}}">Excluir</a></td>
   </tr>
   {% endfor %}

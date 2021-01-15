@@ -19,7 +19,6 @@ def read_sellers() -> list:
             sellers.append(seller)
         return sellers
 
-
 def update_seller(seller: Seller) -> None:
     with Connection() as connection:
         cursor = connection.cursor()
@@ -29,11 +28,10 @@ def update_seller(seller: Seller) -> None:
                         email='{seller.email}'
                         WHERE sellers.id={seller.id}
                         """)
-        conn.commit()
-
+        connection.commit()
 
 def delete_seller(id: int) -> None:
     with Connection() as connection:
         cursor = connection.cursor()
         cursor.execute(f"DELETE FROM sellers WHERE sellers.id={id}")
-        conn.commit()
+        connection.commit()
