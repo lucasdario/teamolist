@@ -1,5 +1,5 @@
 from flask import redirect, request, render_template, Blueprint
-from backend.controllers.controller_category import create_category, list_categories, remove_category, edit_category
+from backend.controllers.controller_category import CategoryController
 from backend.models.category import Category
 
 
@@ -14,11 +14,10 @@ def category_form():
 @category.route('/category/update')
 def category_update():
     id = request.args.get('id')
-    name = request.args.get('name')
-    description = request.args.get('description')
+    category = CategoryController().read_by_id(id)
     return render_template(
-        'category/form_category.html', titulo='Edit Category', update=True, id=id, name=name, 
-        description=description )
+        'category/form_category.html', titulo='Edit Category', update=True, id=category.id, name=category.name, 
+        description=category.description )
 
 
 @category.route('/category/update', methods=['POST'])
@@ -26,25 +25,26 @@ def category_update_save():
     id = request.form.get('id')
     name = request.form.get('nome')
     description = request.form.get('descricao')
-    edit_category(id, name, description)
+    category = Category(name, description, id)
+    CategoryController().update(category)
     return redirect('/category')
     
 
 @category.route('/category/delete')
 def category_delete():
     id = request.args.get('id')
-    remove_category(id)
+    CategoryController().delete(id)
     return redirect('/category')
 
 
 @category.route('/category', methods=['GET'])
 def category_list():
-    categories = list_categories()
+    categories = CategoryController().read_all()
     return render_template('category/list_category.html', title='Categories', data=categories)
 
 
 @category.route('/category', methods=['POST'])
 def category_create():
     category = Category(request.form.get('nome'), request.form.get('descricao'))
-    create_category(category)
+    CategoryController().create(category)
     return redirect('/category')
