@@ -1,5 +1,4 @@
-from backend.controllers.controller_marketplace import create_marketplace, list_marketplaces, edit_marketplace,\
-    remove_marketplace
+from backend.controllers.controller_marketplace import MarketplaceController
 from flask import Blueprint, render_template, request, redirect
 from backend.models.marketplace import Marketplace
 
@@ -14,24 +13,23 @@ def marketplace_form():
 @marketplace.route('/marketplace', methods=['POST'])
 def marketplace_create():
     marketplace = Marketplace(request.form.get('name'), request.form.get('description'))
-    create_marketplace(marketplace)
+    MarketplaceController().create(marketplace)
     return redirect('/marketplace')
 
 
 @marketplace.route('/marketplace', methods=['GET'])
 def marketplace_list():
-    marketplaces = list_marketplaces()
+    marketplaces = MarketplaceController().read_all()
     return render_template('marketplace/list_marketplace.html', title='Marketplaces', data=marketplaces)
 
 
 @marketplace.route('/marketplace/update')
 def marketplace_update():
     id = request.args.get('id')
-    name = request.args.get('name')
-    description = request.args.get('description')
+    marketplace = MarketplaceController().read_by_id(id)
 
     return render_template('marketplace/form_marketplace.html', titulo='Edit Marketplace',
-                           update=True, id=id, name=name, description=description)
+                           update=True, id=marketplace.id, name=marketplace.name, description=marketplace.description)
 
 
 @marketplace.route('/marketplace/update', methods=['POST'])
@@ -39,7 +37,9 @@ def marketplace_update_save():
     id = request.form.get('id')
     name = request.form.get('name')
     description = request.form.get('description')
-    edit_marketplace(id, name, description)
+
+    marketplace = Marketplace(name, description, id)
+    MarketplaceController().update(marketplace)
 
     return redirect('/marketplace')
 
@@ -47,6 +47,6 @@ def marketplace_update_save():
 @marketplace.route('/marketplace/delete')
 def marketplace_delete():
     id = request.args.get('id')
-    remove_marketplace(id)
+    MarketplaceController().delete(id)
 
     return redirect('/marketplace')

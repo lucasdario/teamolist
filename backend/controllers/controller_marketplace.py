@@ -1,25 +1,8 @@
-from backend.dao.db.dao_marketplace import read_marketplaces, write_marketplace, update_marketplace, delete_marketplace
-from backend.models.marketplace import Marketplace
-from backend.models.log import Log
+from backend.controllers.controller_base import BaseController
+from backend.dao.db.dao_marketplace import MarketplaceDao
 
 
-def create_marketplace(marketplace: Marketplace):
-    write_marketplace(marketplace)
-    log = Log('Created Marketplace')
-
-
-def list_marketplaces() -> list:
-    marketplaces = read_marketplaces()
-    log = Log('Listed Marketplaces')
-    return marketplaces
-
-
-def edit_marketplace(id: int, name: str, description: str) -> None:
-    marketplace = Marketplace(name, description, id)
-    update_marketplace(marketplace)
-    log = Log('Updated Marketplace')
-
-
-def remove_marketplace(id: int) -> None:
-    delete_marketplace(id)
-    log = Log('Deleted Marketplace')
+class MarketplaceController(BaseController):
+    def __init__(self):
+        self.__dao = MarketplaceDao()
+        super().__init__(self.__dao)

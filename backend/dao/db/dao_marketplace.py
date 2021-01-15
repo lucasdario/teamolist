@@ -1,36 +1,44 @@
-from backend.dao.db import Connection
 from backend.models.marketplace import Marketplace
+from backend.dao.db.dao_base import BaseDao
 
 
-def write_marketplace(marketplace: Marketplace):
-    with Connection() as connection:
-        cursor = connection.cursor()
-        cursor.execute(f"insert into marketplaces (name, description) values ('{marketplace.name}', '{marketplace.description}');")
-        connection.commit()
+class MarketplaceDao(BaseDao):
+    def __init__(self):
+        self.model_name = "Marketplace"
 
-def read_marketplaces() -> list:
-    with Connection() as connection:
-        cursor = connection.cursor()
-        cursor.execute(f'select * from marketplaces;')
-        result = cursor.fetchall()
+    def create(self, model: Marketplace) -> None:
+        query = f"""INSERT INTO marketplaces
+                    (NAME, DESCRIPTION)
+                    VALUES
+                    ('{model.name}', '{model.description}');"""
+        super().execute(query)
+
+    def read_by_id(self, id: int) -> Marketplace:
+        query = f"SELECT ID, NAME, DESCRIPTION FROM marketplaces WHERE ID = {id};"
+        result = super().read(query)[0]
+        marketplace = Marketplace(result[1], result[2], result[0])
+
+        return marketplace
+
+    def read_all(self) -> list:
+        query = f"SELECT ID, NAME, DESCRIPTION FROM marketplaces;"
+        result_list = super().read(query)
         marketplaces = []
-        for item in result:
-            marketplace = Marketplace(item[1], item[2], item[0])
+        for result in result_list:
+            marketplace = Marketplace(result[1], result[2], result[0])
             marketplaces.append(marketplace)
+
         return marketplaces
 
-def update_marketplace(marketplace: Marketplace) -> None:
-    with Connection() as connection:
-        cursor = connection.cursor()
-        cursor.execute(f"""
-                        UPDATE marketplaces SET name='{marketplace.name}', 
-                        description='{marketplace.description}'
-                        WHERE marketplaces.id='{marketplace.id}'    
-                        """)
-        connection.commit()
+    def update(self, model: Marketplace) -> None:
+        query = f"""UPDATE marketplaces
+                    SET
+                        NAME = '{model.name}',
+                        DESCRIPTION = '{model.description}'
+                    WHERE ID = {model.id}; 
+                """
+        super().execute(query)
 
-def delete_marketplace(id: int) -> None:
-    with Connection() as connection:
-        cursor = connection.cursor()
-        cursor.execute(f"DELETE FROM marketplaces WHERE marketplaces.id='{id}'")
-        connection.commit()
+    def delete(self, id: int) -> None:
+        query = f"DELETE FROM marketplaces WHERE ID = {id};"
+        super().execute(query)

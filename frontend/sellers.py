@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, Blueprint
-from backend.controllers.controller_seller import create_seller, list_sellers, edit_seller, remove_seller
+from backend.controllers.controller_seller import SellerController
 from backend.models.seller import Seller
 
 seller = Blueprint(__name__, 'seller')
@@ -12,26 +12,24 @@ def seller_form():
 
 @seller.route('/seller', methods=['POST'])
 def seller_create():
-    seller = Seller(request.form.get('nome'), request.form.get('phone'), request.form.get('email'))
-    create_seller(seller)
+    seller = Seller(request.form.get('name'), request.form.get('phone'), request.form.get('email'))
+    SellerController().create(seller)
     return redirect('/seller')
 
 
 @seller.route('/seller', methods=['GET'])
 def seller_list_():
-    sellers = list_sellers()
+    sellers = SellerController().read_all()
     return render_template('seller/list_seller.html', title='Sellers', data=sellers)
 
 
 @seller.route('/seller/update')
 def seller_update():
     id = request.args.get('id')
-    name = request.args.get('name')
-    phone = request.args.get('phone')
-    email = request.args.get('email')
+    seller = SellerController().read_by_id(id)
 
     return render_template('seller/form_seller.html', titulo='Edit Seller',
-                           update=True, id=id, name=name, phone=phone, email=email)
+                           update=True, id=id, name=seller.name, phone=seller.phone, email=seller.email)
 
 
 @seller.route('/seller/update', methods=['POST'])
@@ -40,7 +38,9 @@ def seller_update_save():
     name = request.form.get('name')
     phone = request.form.get('phone')
     email = request.form.get('email')
-    edit_seller(id, name, phone, email)
+
+    seller = Seller(name, phone, email, id)
+    SellerController().update(seller)
 
     return redirect('/seller')
 
@@ -48,6 +48,6 @@ def seller_update_save():
 @seller.route('/seller/delete')
 def seller_delete():
     id = request.args.get('id')
-    remove_seller(id)
+    SellerController().delete(id)
 
     return redirect('/seller')
