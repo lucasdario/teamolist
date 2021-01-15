@@ -17,3 +17,17 @@ def read_marketplaces() -> list:
         marketplace = Marketplace(item[1], item[2], item[0])
         marketplaces.append(marketplace)
     return marketplaces
+
+
+def update_marketplace(marketplace: Marketplace) -> None:
+    cursor.execute(f"""
+                    UPDATE marketplaces SET name='{marketplace.name}', 
+                    description='{marketplace.description}'
+                    WHERE marketplaces.id='{marketplace.id}'    
+                    """)
+    conn.commit()
+
+
+def delete_marketplace(id: int) -> None:
+    cursor.execute(f"DELETE FROM marketplaces WHERE marketplaces.id='{id}'")
+    conn.commit()

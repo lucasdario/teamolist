@@ -1,4 +1,4 @@
-class Seller():
+class Seller:
 
     def __init__(self, name: str, phone: str, email: str, id: int = None) -> None:
 
