@@ -10,8 +10,8 @@ class MarketplaceDao(BaseDao):
         query = f"""INSERT INTO marketplaces
                     (NAME, DESCRIPTION)
                     VALUES
-                    ('{model.name}', '{model.description}');
-                """
+                    ('{model.name}', '{model.description}');"""
+        super().execute(query)
 
     def read_by_id(self, id: int) -> Marketplace:
         query = f"SELECT ID, NAME, DESCRIPTION FROM marketplaces WHERE ID = {id};"
