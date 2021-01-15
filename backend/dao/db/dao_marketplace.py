@@ -10,10 +10,12 @@ def write_marketplace(marketplace: Marketplace):
 
 
 def read_marketplaces() -> list:
-    cursor.execute(f'select * from marketplaces;')
-    result = cursor.fetchall()
-    marketplaces = []
-    for item in result:
-        marketplace = Marketplace(item[1], item[2], item[0])
-        marketplaces.append(marketplace)
-    return marketplaces
+    with Connection() as connection:
+        cursor = connection.cursor()
+        cursor.execute(f'select * from marketplaces;')
+        result = cursor.fetchall()
+        marketplaces = []
+        for item in result:
+            marketplace = Marketplace(item[1], item[2], item[0])
+            marketplaces.append(marketplace)
+        return marketplaces
