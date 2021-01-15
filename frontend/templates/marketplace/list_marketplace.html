@@ -14,7 +14,7 @@
     <td>{{ item.id }}</td>
     <td>{{ item.name }}</td>
     <td>{{ item.description }}</td>
-    <td><a class="btn_editar" href="/marketplace/update?id={{ item.id }}&name={{ item.name }}&description={{ item.description }}">Editar</a> </td>
+    <td><a class="btn_editar" href="/marketplace/update?id={{ item.id }}">Editar</a> </td>
     <td><a class="btn_excluir" href="/marketplace/delete?id={{ item.id }}">Excluir</a></td>
   </tr>
   {% endfor %}
