@@ -1,7 +1,6 @@
 class Seller:
 
     def __init__(self, name: str, phone: str, email: str, id: int = None) -> None:
-
         self.__name = name
         self.__phone = phone
         self.__email = email
