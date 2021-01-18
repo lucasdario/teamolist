@@ -1,5 +1,4 @@
 class Product():
-
     def __init__(self, name: str, description: str, price: float, id: int = None) -> None:
 
         self.__name = name
@@ -24,17 +23,17 @@ class Product():
         return self.__id
 
     @name.setter
-    def name(self):
+    def name(self, name):
         self.__name = name
 
     @description.setter
-    def description(self):
+    def description(self, description):
         self.__description = description
 
     @price.setter
-    def price(self):
+    def price(self, price):
         self.__price = price
 
     @id.setter
-    def id(self):
+    def id(self, id):
         self.__id = id
