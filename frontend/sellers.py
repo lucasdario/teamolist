@@ -35,10 +35,10 @@ def seller_update():
 @seller.route('/seller/update', methods=['POST'])
 def seller_update_save():
     id = request.form.get('id')
-    name = request.form.get('name')
-    phone = request.form.get('phone')
-    email = request.form.get('email')
-    seller = Seller(name, phone, email, id)
+    seller = SellerController().read_by_id(id)
+    seller.name = request.form.get('name')
+    seller.phone = request.form.get('phone')
+    seller.email = request.form.get('email')
     _SELLER_CONTROLLER.update(seller)
     return redirect('/seller')
 
@@ -46,5 +46,6 @@ def seller_update_save():
 @seller.route('/seller/delete')
 def seller_delete():
     id = request.args.get('id')
-    _SELLER_CONTROLLER.delete(id)
+    seller = SellerController().read_by_id(id)
+    _SELLER_CONTROLLER.delete(seller)
     return redirect('/seller')

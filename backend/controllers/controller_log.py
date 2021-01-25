@@ -7,7 +7,7 @@ class LogController():
         self.__dao = LogDao()
 
     def create(self, data: str)-> None:
-        return self.__dao.create(data)
+        return self.__dao.save(data)
 
     def read_all(self)-> list:
         return self.__dao.read_all()

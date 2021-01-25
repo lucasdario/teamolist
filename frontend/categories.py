@@ -24,9 +24,9 @@ def category_update():
 @category.route('/category/update', methods=['POST'])
 def category_update_save():
     id = request.form.get('id')
-    name = request.form.get('nome')
-    description = request.form.get('descricao')
-    category = Category(name, description, id)
+    category = CategoryController().read_by_id(id)
+    category.name = request.form.get('nome')
+    category.description = request.form.get('descricao')
     _CATEGORY_CONTROLLER.update(category)
     return redirect('/category')
     
@@ -34,7 +34,8 @@ def category_update_save():
 @category.route('/category/delete')
 def category_delete():
     id = request.args.get('id')
-    _CATEGORY_CONTROLLER.delete(id)
+    category = CategoryController().read_by_id(id)
+    _CATEGORY_CONTROLLER.delete(category)
     return redirect('/category')
 
 

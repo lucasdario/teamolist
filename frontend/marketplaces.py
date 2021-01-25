@@ -35,9 +35,9 @@ def marketplace_update():
 @marketplace.route('/marketplace/update', methods=['POST'])
 def marketplace_update_save():
     id = request.form.get('id')
-    name = request.form.get('name')
-    description = request.form.get('description')
-    marketplace = Marketplace(name, description, id)
+    marketplace = MarketplaceController().read_by_id(id)
+    marketplace.name = request.form.get('name')
+    marketplace.description = request.form.get('description')
     _MARKETPLACE_CONTROLLER.update(marketplace)
     return redirect('/marketplace')
 
@@ -45,5 +45,6 @@ def marketplace_update_save():
 @marketplace.route('/marketplace/delete')
 def marketplace_delete():
     id = request.args.get('id')
-    _MARKETPLACE_CONTROLLER.delete(id)
+    marketplace = MarketplaceController().read_by_id(id)
+    _MARKETPLACE_CONTROLLER.delete(marketplace)
     return redirect('/marketplace')
