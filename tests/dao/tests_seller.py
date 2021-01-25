@@ -11,11 +11,12 @@ def test_dao_instance():
 def test_dao_save():
     seller_dao = SellerDao()
     seller_model = Seller('Test_Name', 'Test_Phone', 'Test_Email')
-    seller_dao.save(seller_model)
-    seller_db = seller_dao.read_all()[-1]
+    id_ = seller_dao.save(seller_model)
+    seller_db = seller_dao.read_by_id(id_)
     assert seller_db.name == 'Test_Name'
     assert seller_db.phone == 'Test_Phone'
     assert seller_db.email == 'Test_Email'
+    return id_
 
 def test_dao_read_all():
     seller_dao = SellerDao()
@@ -28,23 +29,21 @@ def test_dao_read_by_id():
     seller_by_id = seller_dao.read_by_id(seller_db.id)
     assert seller_db.id == seller_by_id.id
 
-def test_dao_delete():
+def test_dao_delete(id_):
     seller_dao = SellerDao()
-    seller_to_delete = seller_dao.read_all()[-1]
+    seller_to_delete = seller_dao.read_by_id(id_)
     seller_dao.delete(seller_to_delete)
-    seller_db = seller_dao.read_all()[-1]
-    assert seller_db.name != 'Test_Seller'
-    assert seller_db.phone != 'Test_Phone'
-    assert seller_db.email != 'Test_Email'
+    seller_db = seller_dao.read_by_id(id_)
+    assert seller_db == None
 
 
 def run_test_dao():
     try:
         test_dao_instance()
-        test_dao_save()
+        id_ = test_dao_save()
         test_dao_read_all()
         test_dao_read_by_id()
-        test_dao_delete()
+        test_dao_delete(id_)
         print('\033[42;1;30m'+"all dao.seller tests PASSED"+'\033[0;0m')
     except AssertionError as asserterror:
         print('\033[41;1;37m'+"some test from dao.seller FAILED"+'\033[0;0m')
