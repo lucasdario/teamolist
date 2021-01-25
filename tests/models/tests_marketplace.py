@@ -16,10 +16,9 @@ def test_model_marketplace_value():
 
 def run_test_model_marketplace():
     try:
-        test_marketplace_instance()
+        test_model_marketplace_instance()
         test_model_marketplace_value()
         print('\033[42;1;30m'+'all model.marketplace tests PASSED'+'\033[0;0m')
     except AssertionError as asserterror:
         print('\033[41;1;37m'+'some test from model.marketplace FAILED'+'\033[0;0m')
         raise asserterror
-

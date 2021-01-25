@@ -6,21 +6,12 @@ class BaseDao:
     def __init__(self, type_model: object) -> None:
         self.__type_model = type_model
 
-
     def save(self, model: BaseModel) -> int:
-
-
-    def save(self, model: BaseModel) -> Int:
-
         with Session() as session:
             session.add(model)
             session.commit()
             id_ = model.id
-
         return id_
-
-            return id_
-
 
     def read_all(self) -> list:
         with Session() as session:
@@ -32,9 +23,9 @@ class BaseDao:
             result = session.query(self.__type_model).filter_by(id=id).first()
             return result
 
-    def delete(self, model: BaseModel) -> Int:
+    def delete(self, model: BaseModel) -> int:
         with Session() as session:
             session.delete(model)
             session.commit()
             id_=model.id
-            return id_
+        return id_
