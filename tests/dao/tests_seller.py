@@ -37,7 +37,7 @@ def test_dao_delete(id_):
     assert seller_db == None
 
 
-def run_test_dao():
+def run_test_dao_seller():
     try:
         test_dao_instance()
         id_ = test_dao_save()
