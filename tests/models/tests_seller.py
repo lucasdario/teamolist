@@ -7,6 +7,7 @@ def test_seller_instance():
     assert isinstance(seller, BaseModel)
     assert isinstance(seller, Seller)
 
+
 def test_seller_contructor():
     seller = Seller('Test_Name', 'Test_Phone', 'Test_Email')
     assert seller.name == 'Test_Name'

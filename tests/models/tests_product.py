@@ -1,6 +1,5 @@
 from backend.models.product import Product
 
-
 def run_test_model_product():
     name = 'Roupa'
     description = 'muito bonita'

@@ -1,14 +1,17 @@
 from backend.dao.db.session import Session
 from backend.models.base_model import BaseModel
 
+
 class BaseDao:
     def __init__(self, type_model: object) -> None:
         self.__type_model = type_model
 
-    def save(self, model: BaseModel) -> None:
+    def save(self, model: BaseModel) -> int:
         with Session() as session:
             session.add(model)
             session.commit()
+            id_ = model.id
+        return id_
 
     def read_all(self) -> list:
         with Session() as session:
@@ -20,7 +23,9 @@ class BaseDao:
             result = session.query(self.__type_model).filter_by(id=id).first()
             return result
 
-    def delete(self, model: BaseModel) -> None:
+    def delete(self, model: BaseModel) -> int:
         with Session() as session:
             session.delete(model)
             session.commit()
+            id_=model.id
+        return id_
