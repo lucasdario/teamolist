@@ -5,7 +5,7 @@ name_ = 'Perfumes'
 description_ = 'Perfumaria feminina e masculina'
 
 
-def start_all():
+def run_test_model_categories():
     try:
         obj_instace()
         obj_types()

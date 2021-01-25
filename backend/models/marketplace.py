@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String
 from backend.models.base_model import BaseModel
 
+
 class Marketplace(BaseModel):
     __tablename__ = 'marketplaces'
     name = Column(String(length=200), nullable = False)
