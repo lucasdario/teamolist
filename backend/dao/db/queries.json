@@ -1,7 +1,0 @@
-{
-  "logs": "create table logs (id serial not null constraint logs_pk primary key, data varchar(500) not null);",
-  "sellers": "create table sellers (id serial not null constraint sellers_pk primary key, name varchar(200) not null, phone varchar(11) not null, email varchar(200) not null);",
-  "marketplaces": "create table marketplaces (id serial not null constraint marketplaces_pk primary key, name varchar(200) not null, description varchar(600));",
-  "products": "create table products (id serial not null constraint products_pk primary key, name varchar(200) not null, description varchar(500), price money not null);",
-  "categories": "create table categories (id serial not null, name varchar(200) not null, description varchar(400));"
-}
