@@ -5,4 +5,4 @@ from backend.dao.db.dao_product import ProductDao
 class ProductController(BaseController):
     def __init__(self):
         self.__dao = ProductDao()
-        super().__init__(self.__dao)
+        super().__init__(self.__dao, 'Product')
