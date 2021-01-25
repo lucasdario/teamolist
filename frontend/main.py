@@ -1,3 +1,5 @@
+import sys
+
 from flask import Flask, render_template
 
 from frontend.marketplaces import marketplace
