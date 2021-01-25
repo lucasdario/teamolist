@@ -7,12 +7,20 @@ class BaseDao:
         self.__type_model = type_model
 
 
+    def save(self, model: BaseModel) -> int:
+
+
     def save(self, model: BaseModel) -> Int:
+
         with Session() as session:
             session.add(model)
             session.commit()
             id_ = model.id
+
+        return id_
+
             return id_
+
 
     def read_all(self) -> list:
         with Session() as session:
