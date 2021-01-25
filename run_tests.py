@@ -1,4 +1,9 @@
 # from tests folder import tests
+
+from tests.models.tests_product import TestProduct
+
+TestProduct().test()
+
 from tests.models.tests_seller import run_test_model_seller
 
 
