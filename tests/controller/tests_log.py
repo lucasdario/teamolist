@@ -3,7 +3,7 @@ from backend.models.log import Log
 from backend.dao.db.dao_log import LogDao
 
 
-def test_log_instance():
+def test_log_controller_instance():
     controller = LogController()
     assert isinstance(controller, LogController)
 
@@ -28,7 +28,7 @@ def test_create():
 
 def run_test_controller_log():
     try:
-        test_log_instance()
+        test_log_controller_instance()
         test_create()
         test_read_all()
 
