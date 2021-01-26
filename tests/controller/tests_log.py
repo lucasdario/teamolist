@@ -36,6 +36,3 @@ def run_test_controller_log():
     except AssertionError as asserterror:
         print('\033[41;1;37m' + 'some test from controller.log FAILED' + '\033[0;0m')
         raise asserterror
-
-
-run_test_controller_log()
