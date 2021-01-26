@@ -8,12 +8,12 @@ from tests.dao.tests_marketplace import run_test_dao_marketplace
 from tests.dao.tests_seller import run_test_dao_seller
 from tests.dao.tests_log import run_test_dao_log
 from tests.dao.test_product import run_test_dao_products
+from tests.controller.tests_category import run_test_controller_categories
 from tests.controller.tests_log import run_test_controller_log
 from tests.controllers.test_products import run_test_controllers_products
 from dotenv import load_dotenv
-
-
 load_dotenv()
+
 
 # Model tests
 run_test_model_marketplace()
@@ -29,7 +29,7 @@ run_test_dao_categories()
 run_test_dao_marketplace()
 run_test_dao_products()
 
-
-# Controller tests
+# CONTROLLER tests
+run_test_controller_categories()
 run_test_controller_log()
 run_test_controllers_products()
