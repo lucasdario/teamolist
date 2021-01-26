@@ -20,7 +20,7 @@ def test_read_all():
 
 def test_save():
     dao = LogDao()
-    data = '25/01/2021 às 13:37:20 => Listed Marketplace'
+    data = '25/01/2021 às 13:37:20 => Listed Tests'
     log = Log(data)
     returned_id = dao.save(log)
     saved_log = dao.read_by_id(returned_id)
