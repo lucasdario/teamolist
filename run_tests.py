@@ -11,6 +11,7 @@ from tests.dao.test_product import run_test_dao_products
 from tests.controller.tests_category import run_test_controller_categories
 from tests.controller.tests_log import run_test_controller_log
 from tests.controllers.test_products import run_test_controllers_products
+from tests.controller.tests_seller import run_test_controller_seller
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -33,3 +34,4 @@ run_test_dao_products()
 run_test_controller_categories()
 run_test_controller_log()
 run_test_controllers_products()
+run_test_controller_seller()
