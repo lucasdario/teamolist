@@ -57,8 +57,8 @@ def obj_empty_name_exception():
         obj = Category('', description_)
         raise NotImplementedError('Exception not raised!')
     except Exception as e:
-        assert isinstance(e, AssertionError), '[in model test] A exceção da validação do nome nao é do tipo esperado'
-        assert e.args == ('Name cannot be empty',), '[in model test] A saída de "name" não é válida ou igual a entrada'
+        assert isinstance(e, ValueError), '[in model test] A exceção da validação do nome nao é do tipo esperado'
+        assert e.args == ('Name cannot be empty!',), '[in model test] A saída da exceção da validação do nome não é a esperada'
 
 
 def obj_special_character_in_name_exception():
