@@ -17,6 +17,8 @@ class Log(BaseModel):
     def validate_data(self, _, data):
         if not data:
             raise ValueError('You cannot create an empty log.')
+        if len(data) > 476:
+            raise ValueError('The log must have a maximum length of 476 characters.')
         date = datetime.now()
         data = date.strftime(f"%d/%m/%Y às %H:%M:%S => {data}")
         return data
