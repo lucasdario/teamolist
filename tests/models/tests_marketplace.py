@@ -18,7 +18,7 @@ def test_model_marketplace_value():
     assert mkt2.name != "" and mkt2.name is not None, "Name cannot be empty"
     assert len(mkt2.name) <= 200, "Name cannot have more than 200 characters"
     assert len(mkt2.description) <= 600, "Description cannot have more than 600 characters"
-    assert re.search(r"^[a-zA-Z0-9]+$", mkt2.name), "Name cannot have special characters"
+    assert not re.search(r"^[a-zA-Z0-9]+$", mkt2.name), "Name cannot have special characters"
 
 
 def run_test_model_marketplace():

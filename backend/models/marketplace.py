@@ -18,7 +18,7 @@ class Marketplace(BaseModel):
         if not name:
             raise ValueError("Empty name aren't valid")
         if len(name) > 200:
-            raise ValueError("Description higher than 200 characters")
+            raise ValueError("Name higher than 200 characters")
         if re.search(r"^[a-zA-Z0-9]+$", name):
             raise ValueError("No special characters alowed in name.")
         return name
