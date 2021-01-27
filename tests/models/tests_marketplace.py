@@ -1,3 +1,4 @@
+from sqlalchemy.sql.type_api import STRINGTYPE
 from backend.models.base_model import BaseModel
 from backend.models.marketplace import Marketplace
 
@@ -12,6 +13,7 @@ def test_model_marketplace_value():
     mkt2 = Marketplace('Americanas', 'Departamentos')
     assert mkt2.name == 'Americanas'
     assert mkt2.description == 'Departamentos'
+    assert type(mkt2) is STRINGTYPE, "Name is not a string: %r" % mkt2
 
 
 def run_test_model_marketplace():
