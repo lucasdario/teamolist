@@ -14,7 +14,7 @@ class Category(BaseModel):
 
     @validates('name')
     def validate_name(self, key, name):
-        if name == '':
+        if not name:
             raise ValueError('Name cannot be empty!')
         if len(name) > 200:
             raise ValueError('Name must be less than 200 characters!')

@@ -40,7 +40,7 @@ def obj_values():
     obj = obj_instace()
     assert obj.name == name_, '[in model test] A saída de "name" não é válida ou igual a entrada'
     assert obj.description == description_, '[in model test] A saída de "description" não é válida ou igual a entrada'
-    assert obj.name != '', '[in model test] A saída de "name" está vazia'
+    assert obj.name != '' and obj.name is not None, '[in model test] A saída de "name" está vazia'
     assert len(obj.name) <= 200, '[in model test] A saída de "name" contém mais de 200 caracteres'
     assert re.match(r'^[a-zà-úA-ZÀ-Ú0-9 ]+$', obj.name), '[in model test] A saída de "name" contém caracteres especiais'
     assert len(obj.description) <= 400, '[in model test] A saída de "description" contém mais de 400 caracteres'
