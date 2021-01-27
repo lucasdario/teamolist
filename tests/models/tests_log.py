@@ -19,6 +19,16 @@ def test_log_constructor():
 
 
 def test_log_constructor_with_empty_data_should_raise_exception():
+    data = 'A' * 500
+    try:
+        Log(data)
+        raise AssertionError('ValueError exception not raised!')
+    except ValueError as e:
+        assert isinstance(e, ValueError)
+        assert e.args == ('The log must have a maximum length of 476 characters.',)
+
+
+def test_log_constructor_with_more_than_476_char_data_should_raise_exception():
     try:
         Log('')
         raise AssertionError('ValueError exception not raised!')
@@ -31,6 +41,7 @@ def run_test_model_log():
     try:
         test_log_instance()
         test_log_constructor()
+        test_log_constructor_with_empty_data_should_raise_exception()
         test_log_constructor_with_empty_data_should_raise_exception()
 
         print('\033[42;1;30m' + 'all model.log tests PASSED' + '\033[0;0m')
