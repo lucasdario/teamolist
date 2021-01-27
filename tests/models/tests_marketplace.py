@@ -15,15 +15,10 @@ def test_model_marketplace_value():
     assert mkt2.name == 'Americanas'
     assert mkt2.description == 'Departamentos'
     assert type(mkt2) is STRINGTYPE, "Name and Description aren't strings: %r" % mkt2
-    if not mkt2.name:
-        raise ValueError("Empty name aren't valid")
-    if len(mkt2.name) > 200:
-        raise ValueError("Description higher than 200 characters")
-    if len(mkt2.description) > 600:
-        raise ValueError("Description higher than 600 characters")
-    if re.search(r"^[a-zA-Z0-9]+$", mkt2.name):
-        raise ValueError("No special characters alowed in name.")
-    return mkt2.name, mkt2.description
+    assert mkt2.name != "" and mkt2.name is not None, "Name cannot be empty"
+    assert len(mkt2.name) <= 200, "Name cannot have more than 200 characters"
+    assert len(mkt2.description) <= 600, "Description cannot have more than 600 characters"
+    assert re.search(r"^[a-zA-Z0-9]+$", mkt2.name), "Name cannot have special characters"
 
 
 def run_test_model_marketplace():
