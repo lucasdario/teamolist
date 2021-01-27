@@ -67,7 +67,9 @@ def test_negative_price():
         prod = Product(name, description, -10.0)
         raise NotImplementedError('Exception not raised!')
     except Exception as error:
-        assert isinstance(error, ValueError), 'Invalid Exception!
+        assert isinstance(error, ValueError), 'Invalid Exception!'
+
+test_model_product()
 
 # def run_test_model_product():
 #
