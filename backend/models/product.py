@@ -28,7 +28,7 @@ class Product(BaseModel):
     @validates('description')
     def validate_description(self, key, description):
         if not description:
-            raise ValueError('Name should not be empty!')
+            raise ValueError('Description should not be empty!')
         if len(description) > 500:
             raise ValueError('Description should be 500 chars or less!')
         return description

@@ -31,8 +31,11 @@ def test_instances():
 def test_atrtributes():
     prod = test_instances()
     assert isinstance(prod.name, str), 'Product.name is not a string!'
+    assert len(prod.name) <= 200, 'Product.name is greater than 200 chars'
     assert isinstance(prod.description, str), 'Product.description is not a string!'
+    assert len(prod.description) <= 500, 'Product.description is greater than 200 chars'
     assert isinstance(prod.price, float), 'Product.price is not a float!'
+    assert prod.price > 0.0, 'Product.price is not greater than 0.0!'
 
 def test_name_lenght():
     try:
