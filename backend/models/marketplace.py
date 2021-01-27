@@ -15,12 +15,12 @@ class Marketplace(BaseModel):
 
     @validates("name")
     def validate_name(self, key, name):
-        if not name == "":
+        if not name:
             raise ValueError("Empty name aren't valid")
         if len(name) > 200:
             raise ValueError("Description higher than 200 characters")
-        if re.search(r"^[a-zà-úA-ZÀ-Ú]+$", name):
-            raise ValueError("Name should have only letters (aA).")
+        if re.search(r"^[a-zA-Z0-9]+$", name):
+            raise ValueError("No special characters alowed in name.")
         return name
 
     @validates("description")
