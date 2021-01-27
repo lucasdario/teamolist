@@ -15,6 +15,8 @@ class Log(BaseModel):
 
     @validates('data')
     def validate_data(self, _, data):
+        if not isinstance(data, str):
+            raise ValueError(f'You must pass a string, and not a {type(data)}')
         if not data:
             raise ValueError('You cannot create an empty log.')
         if len(data) > 476:
