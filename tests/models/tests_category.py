@@ -85,4 +85,4 @@ def obj_description_lenght_exception():
         raise NotImplementedError('Exception not raised!')
     except ValueError as e:
         assert isinstance(e, ValueError), '[in model test] A exceção da validação da descrição não é do tipo esperado'
-        assert e.args == ('Name must be less than 200 characters!',), '[in model test] A saida da exceção da validação da descrição não é a esperada'
+        assert e.args == ('Description must be less than 400 characters!',), '[in model test] A saida da exceção da validação da descrição não é a esperada'

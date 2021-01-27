@@ -24,5 +24,5 @@ class Category(BaseModel):
     @validates('description')
     def validate_description(self, key, description):
         if len(description) > 400:
-            raise ValueError('Name must be less than 200 characters!')
+            raise ValueError('Description must be less than 400 characters!')
         return description
