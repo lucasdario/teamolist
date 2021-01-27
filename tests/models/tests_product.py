@@ -36,7 +36,7 @@ def test_atrtributes():
 
 def test_name_lenght():
     try:
-        prod = Product('*' * 201, description)
+        prod = Product('*' * 201, description, price)
         raise NotImplementedError('Exception not raised!')
     except ValueError as error:
         assert isinstance(error, ValueError), 'Invalid Exception!'
@@ -70,41 +70,3 @@ def test_negative_price():
         assert isinstance(error, ValueError), 'Invalid Exception!'
 
 test_model_product()
-
-# def run_test_model_product():
-#
-#
-#     name_empty = ''
-#     description_empty = ''
-#     price_empty = 0.0
-#
-#     name_wrong = 67
-#     description_wrong = 180
-#     price_wrong = 'preco'
-#
-#     try:
-#         product = Product(name, description, price)
-#         assert product.name is name
-#         assert product.description is description
-#         assert product.price is price
-#         assert isinstance(product, Product)
-#
-#         # aceitando valores vazios
-#         product_empty = Product(name_empty, description_empty, price_empty)
-#         #assert product_empty.name
-#         #assert product_empty.description
-#         #assert product_empty.price != 0.0
-#
-#         #aceitando valores de tipos errados
-#         product_wrong = Product(name_wrong, description_wrong, price_wrong)
-#         #assert isinstance(product_wrong.name, str)
-#         #assert isinstance(product_wrong.description, str)
-#         #assert isinstance(product_wrong.price, float)
-#
-#         print('\033[42;1;30m' + 'all model.product tests PASSED' + '\033[0;0m')
-#     except AssertionError as asserterror:
-#         print('\033[41;1;37m' + 'some test from model.product FAILED' + '\033[0;0m')
-#         raise asserterror
-
-
-#run_test_model_product()

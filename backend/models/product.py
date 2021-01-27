@@ -16,13 +16,14 @@ class Product(BaseModel):
         self.price = price
 
     @validates('name')
-    def validate_name(selfself, key, name):
+    def validate_name(self, key, name):
         if not name:
             raise ValueError('Name should not be empty!')
         if len(name) > 200:
             raise ValueError('Name should be 200 chars or less!')
         if not re.match(r'^[a-zà-úA-ZÀ-Ú0-9 ]+$', name):
             raise ValueError('Invalid chars in name!')
+        return name
 
     @validates('description')
     def validate_description(self, key, description):
@@ -30,6 +31,7 @@ class Product(BaseModel):
             raise ValueError('Name should not be empty!')
         if len(description) > 500:
             raise ValueError('Description should be 500 chars or less!')
+        return description
 
     @validates('price')
     def validate_price(self, key, price):
@@ -37,3 +39,4 @@ class Product(BaseModel):
             raise ValueError('Price should not be empty or zero!')
         if price < 0:
             raise ValueError('Price should not be negative!')
+        return price
