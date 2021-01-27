@@ -19,7 +19,7 @@ class Category(BaseModel):
         if len(name) > 200:
             raise ValueError('Name must be less than 200 characters!')
         if not re.match(r'^[a-zà-úA-ZÀ-Ú0-9 ]+$', name):
-            raise ValueError('Invalid characteres in name!')
+            raise ValueError('Name cannot have special characters!')
         return name
 
     @validates('description')

@@ -67,7 +67,7 @@ def obj_special_character_in_name_exception():
         raise NotImplementedError('Exception not raised!')
     except ValueError as e:
         assert isinstance(e, ValueError), '[in model test] A exceção da validação do nome não é do tipo esperado'
-        assert e.args == ('Invalid characteres in name!',), '[in model test] A saida da exceção da validação do nome não é a esperada'
+        assert e.args == ('Name cannot have special characters!',), '[in model test] A saida da exceção da validação do nome não é a esperada'
 
 
 def obj_name_lenght_exception():
