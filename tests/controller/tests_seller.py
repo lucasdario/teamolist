@@ -10,12 +10,12 @@ def test_controller_instance():
 
 def test_controller_create():
     seller_controller = SellerController()
-    seller_model = Seller('Test_Name', 'Test_Phone', 'Test_Email')
+    seller_model = Seller('Test_Name', '1010101010', 'nananan@papappa.raa')
     id_ = seller_controller.create(seller_model)
     seller_db_by_controller = seller_controller.read_by_id(id_)
     assert seller_db_by_controller.name == 'Test_Name'
-    assert seller_db_by_controller.phone == 'Test_Phone'
-    assert seller_db_by_controller.email == 'Test_Email'
+    assert seller_db_by_controller.phone == '1010101010'
+    assert seller_db_by_controller.email == 'nananan@papappa.raa'
     return id_
 
 def test_controller_read_all():
@@ -33,13 +33,13 @@ def test_controller_update(id_):
     seller_controller = SellerController()
     seller_to_update = seller_controller.read_by_id(id_)
     seller_to_update.name = 'Test_Name_Updated'
-    seller_to_update.phone = 'PhoneUpdate'
-    seller_to_update.email = 'Test_Email_Updated'
+    seller_to_update.phone = '66666666666'
+    seller_to_update.email = 'Test_Emai@l_Upda.ted'
     seller_controller.update(seller_to_update)
     seller_db_by_controller = seller_controller.read_by_id(id_)
     assert seller_db_by_controller.name == 'Test_Name_Updated'
-    assert seller_db_by_controller.phone == 'PhoneUpdate'
-    assert seller_db_by_controller.email == 'Test_Email_Updated'
+    assert seller_db_by_controller.phone == '66666666666'
+    assert seller_db_by_controller.email == 'Test_Emai@l_Upda.ted'
 
 def test_controller_delete(id_):
     seller_controller = SellerController()
