@@ -10,12 +10,12 @@ def test_dao_instance():
 
 def test_dao_save():
     seller_dao = SellerDao()
-    seller_model = Seller('Test_Name', 'Test_Phone', 'Test_Email')
+    seller_model = Seller('Test_Name', '5555555555', 'email@olist.br')
     id_ = seller_dao.save(seller_model)
     seller_db = seller_dao.read_by_id(id_)
     assert seller_db.name == 'Test_Name'
-    assert seller_db.phone == 'Test_Phone'
-    assert seller_db.email == 'Test_Email'
+    assert seller_db.phone == '5555555555'
+    assert seller_db.email == 'email@olist.br'
     return id_
 
 def test_dao_read_all():
