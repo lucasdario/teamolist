@@ -1,7 +1,7 @@
 from backend.models.base_model import BaseModel
 from backend.models.log import Log
 
-data = '25/01/2021 às 13:37:20 => Listed Marketplace'
+data = 'Listed Marketplace'
 
 
 def test_log_instance():
@@ -13,15 +13,52 @@ def test_log_instance():
 def test_log_constructor():
     log = Log(data)
     assert isinstance(log.data, str)
-    assert log.data is data
+    assert data in log.data
+    assert len(log.data) > len(data)
+    assert 'às' in log.data
+
+
+def test_log_constructor_with_non_str_data_should_raise_exception():
+    data = ['Test']
+    try:
+        Log(data)
+        raise AssertionError('ValueError exception not raised!')
+    except ValueError as e:
+        assert isinstance(e, ValueError)
+        assert e.args == ('You must pass a string, and not a <class \'list\'>',)
+
+
+def test_log_constructor_with_empty_data_should_raise_exception():
+    data = 'A' * 500
+    try:
+        Log(data)
+        raise AssertionError('ValueError exception not raised!')
+    except ValueError as e:
+        assert isinstance(e, ValueError)
+        assert e.args == ('The log must have a maximum length of 476 characters.',)
+
+
+def test_log_constructor_with_more_than_476_char_data_should_raise_exception():
+    try:
+        Log('')
+        raise AssertionError('ValueError exception not raised!')
+    except ValueError as e:
+        assert isinstance(e, ValueError)
+        assert e.args == ('You cannot create an empty log.',)
 
 
 def run_test_model_log():
     try:
         test_log_instance()
         test_log_constructor()
+        test_log_constructor_with_non_str_data_should_raise_exception()
+        test_log_constructor_with_empty_data_should_raise_exception()
+        test_log_constructor_with_more_than_476_char_data_should_raise_exception()
 
         print('\033[42;1;30m' + 'all model.log tests PASSED' + '\033[0;0m')
     except AssertionError as asserterror:
         print('\033[41;1;37m' + 'some test from model.log FAILED' + '\033[0;0m')
         raise asserterror
+
+
+run_test_model_log()
